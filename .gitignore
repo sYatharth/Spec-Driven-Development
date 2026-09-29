@@ -1,0 +1,39 @@
+# ===== Secrets & env (NFR-4: no secrets committed) =====
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets.*
+
+# ===== Java / Maven =====
+target/
+!.mvn/wrapper/maven-wrapper.jar
+*.class
+*.jar
+*.war
+hs_err_pid*
+
+# ===== Database (H2 file mode) =====
+*.db
+*.mv.db
+*.trace.db
+data/
+
+# ===== Node / Frontend =====
+node_modules/
+dist/
+dist-ssr/
+*.local
+frontend/.vite/
+
+# ===== IDE / OS =====
+.idea/
+*.iml
+.vscode/
+.DS_Store
+Thumbs.db
+
+# ===== Logs =====
+*.log
+logs/

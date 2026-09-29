@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: support-tickets
+
+  datasource:
+    # H2 in FILE mode -> data survives application restart (NFR-1).
+    # Override via SPRING_DATASOURCE_URL env for PostgreSQL.
+    url: ${SPRING_DATASOURCE_URL:jdbc:h2:file:./data/tickets;AUTO_SERVER=TRUE;MODE=PostgreSQL}
+    driver-class-name: org.h2.Driver
+    username: ${SPRING_DATASOURCE_USERNAME:sa}
+    password: ${SPRING_DATASOURCE_PASSWORD:}
+
+  jpa:
+    hibernate:
+      # dev only; use Flyway for prod (documented non-goal for v1)
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+server:
+  port: 8080
+
+# Application-specific config
+app:
+  cors:
+    # Frontend dev origin; override via APP_CORS_ORIGIN env
+    allowed-origin: ${APP_CORS_ORIGIN:http://localhost:5173}
+
+logging:
+  level:
+    com.support.tickets: INFO
